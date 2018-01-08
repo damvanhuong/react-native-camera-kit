@@ -378,8 +378,15 @@ static NSString *remoteDownloadIndicatorType = REMOTE_DOWNLOAD_INDICATOR_TYPE_SP
 -(void)setIsSelected:(BOOL)isSelected {
     
     _isSelected = isSelected;
-    
+
     if (self.disableSelectionIcons) return;
+
+    if (_isSelected == NO) {
+        BOOL enable = [selection[@"enable"] boolValue] ?: NO;
+        if (enable == NO) {
+            return;
+        }
+    }
     
     [self setSelectedOverLay:isSelected forceOverlay:NO];
     

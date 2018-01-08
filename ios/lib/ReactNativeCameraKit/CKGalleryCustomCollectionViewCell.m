@@ -103,13 +103,5 @@
     }
 }
 
-- (void)setIsSelected:(BOOL)isSelected {
-    if (_isSelected == NO) {
-        BOOL enable = [selection[@"enable"] boolValue] ?: NO;
-        if (enable == NO) {
-            return;
-        }
-    }
-}
 
 @end
