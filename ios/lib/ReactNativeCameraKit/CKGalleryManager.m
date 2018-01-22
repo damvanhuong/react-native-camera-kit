@@ -41,7 +41,7 @@ RCT_EXPORT_MODULE();
 -(PHFetchOptions*)fetchOptions {
     if (!_fetchOptions) {
         _fetchOptions = [[PHFetchOptions alloc] init];
-        _fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+        _fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
     }
     return _fetchOptions;
 }
@@ -182,9 +182,9 @@ RCT_EXPORT_METHOD(getAlbumsWithThumbnails:(RCTPromiseResolveBlock)resolve
                                           if(albums[@"albums"]) {
                                               [albumsArrayAns addObjectsFromArray:albums[@"albums"]];
                                           }
-                                          if(allPhotosAlbum) {
-                                              [albumsArrayAns insertObject:allPhotosAlbum atIndex:0];
-                                          }
+                                        //   if(allPhotosAlbum) {
+                                        //       [albumsArrayAns insertObject:allPhotosAlbum atIndex:0];
+                                        //   }
                                           
                                           if (!albumsArrayAns || albumsArrayAns.count == 0) {
                                               NSError *error = [[NSError alloc] initWithDomain:NSCocoaErrorDomain
