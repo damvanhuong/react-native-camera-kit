@@ -341,11 +341,14 @@ static NSString * const CustomCellReuseIdentifier = @"CustomCell";
     
     PHFetchResult *collections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     
+    PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
+    fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+
     [collections enumerateObjectsUsingBlock:^(PHAssetCollection *collection, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ([collection.localizedTitle isEqualToString:albumName]) {
             
-            PHFetchResult *collectionFetchResults = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
+            PHFetchResult *collectionFetchResults = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptions];
             [self upadateCollectionView:collectionFetchResults animated:(self.galleryData != nil)];
             *stop = YES;
             return;
